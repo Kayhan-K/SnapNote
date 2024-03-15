@@ -24,11 +24,10 @@ export default function Note({ note, onDelete, isExpanded, expandNote }) {
 
   return (
     <div
-      className={`bg-white rounded-2xl px-6 py-6 hover:shadow-inner shadow-xl cursor-pointer mx-6 transition-all relative overflow-hidden text-clip text-justify  ${expandedStyles.width} ${expandedStyles.height} ${expandedStyles.transition} ${expandedStyles.position}`}
-      //onClick={onDelete}
-      onClick={expandNote}
+      className={`bg-white rounded-2xl px-6 py-6 hover:shadow-inner shadow-xl cursor-pointer mx-6 transition-all relative overflow-hidden text-clip text-justify z-10  ${expandedStyles.width} ${expandedStyles.height} ${expandedStyles.transition} ${expandedStyles.position}`}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
+      onClick={expandNote}
       style={{
         position: isExpanded ? "fixed" : "",
         top: `${expandedStyles.top}`,
@@ -36,11 +35,15 @@ export default function Note({ note, onDelete, isExpanded, expandNote }) {
         transform: isExpanded ? "translate(-50%, -50%)" : "",
       }}
     >
-      {hover && (
-        <div className="absolute inset-0 flex justify-center items-center">
-          <div className="bg-black rounded-xl opacity-45 flex justify-center items-center ">
-            <Trash className="text-white text-2xl " />
-          </div>
+      {!isExpanded && hover && (
+        <div className="relative flex justify-center items-center z-20">
+          <Trash
+            onClick={(e) => {
+              e.stopPropagation(); //Prevent click event to transfer to parent divs onClick function.
+              onDelete();
+            }}
+            className="text-black text-2xl absolute right-0 top-1  z-20"
+          />
         </div>
       )}
 
