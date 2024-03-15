@@ -44,7 +44,7 @@ export default function Homepage() {
     >
       <div
         id="input-section"
-        className="flex flex-col justify-center items-center h-1/6 w-screen "
+        className="flex flex-col justify-center items-center w-screen mt-10 "
       >
         <div className="relative lg:w-2/6 md:w-2/6">
           <input
@@ -89,11 +89,11 @@ export default function Homepage() {
 
       <div
         id="note-section"
-        className="flex justify-center items-start h-5/6 w-screen "
+        className="flex grow justify-center items-start h-full w-screen overflow-y-auto	 "
       >
         <div
           id="note-container"
-          className="flex justify-center items-start w-full h-4/5 flex-wrap "
+          className="flex justify-center items-start w-full flex-wrap gap-x-1 gap-y-6 my-14 "
         >
           {note.map((noteItem, index) => (
             <Note
