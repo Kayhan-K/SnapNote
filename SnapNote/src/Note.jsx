@@ -17,14 +17,15 @@ export default function Note({ note, onDelete, isExpanded, expandNote }) {
   const expandedStyles = {
     width: isExpanded ? "w-96" : "w-60",
     height: isExpanded ? "h-80" : "h-56",
-    transition: isExpanded ? "transition duration-700 z-20" : "",
+    transition: isExpanded ? "transition duration-700 z-20 " : "",
     top: isExpanded ? `${centerLocation.y}px` : "",
     left: isExpanded ? `${centerLocation.x}px` : "",
+    overflow: isExpanded ? "overflow-auto" : "overflow-hidden",
   };
 
   return (
     <div
-      className={`bg-white rounded-2xl px-6 py-6 hover:shadow-inner shadow-xl cursor-pointer mx-6 transition-all relative overflow-hidden text-clip text-justify z-10  ${expandedStyles.width} ${expandedStyles.height} ${expandedStyles.transition} ${expandedStyles.position}`}
+      className={`bg-white rounded-2xl px-6 py-6 hover:shadow-inner shadow-xl cursor-pointer mx-6 transition-all relative text-clip text-justify z-10  ${expandedStyles.width} ${expandedStyles.height} ${expandedStyles.transition} ${expandedStyles.position} ${expandedStyles.overflow}`}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onClick={expandNote}
