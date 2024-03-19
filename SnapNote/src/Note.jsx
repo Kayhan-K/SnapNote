@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Trash } from "react-bootstrap-icons";
+import { X } from "react-bootstrap-icons";
 
 export default function Note({ note, onDelete, isExpanded, expandNote }) {
   const [hover, setHover] = useState(false);
@@ -25,10 +26,10 @@ export default function Note({ note, onDelete, isExpanded, expandNote }) {
 
   return (
     <div
-      className={`bg-white rounded-2xl px-6 py-6 hover:shadow-inner shadow-xl cursor-pointer mx-6 transition-all relative text-clip text-justify z-10  ${expandedStyles.width} ${expandedStyles.height} ${expandedStyles.transition} ${expandedStyles.position} ${expandedStyles.overflow}`}
+      className={`bg-white rounded-2xl px-6 py-7 hover:shadow-inner shadow-xl cursor-pointer mx-6 transition-all relative text-clip text-justify z-10  ${expandedStyles.width} ${expandedStyles.height} ${expandedStyles.transition} ${expandedStyles.position} ${expandedStyles.overflow}`}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      onClick={expandNote}
+      onClick={() => !isExpanded && expandNote()} //only expand note if not expanded
       style={{
         position: isExpanded ? "fixed" : "",
         top: `${expandedStyles.top}`,
@@ -36,19 +37,27 @@ export default function Note({ note, onDelete, isExpanded, expandNote }) {
         transform: isExpanded ? "translate(-50%, -50%)" : "",
       }}
     >
+      {isExpanded && (
+        <div className="relative flex justify-center items-center ">
+          <X
+            className="text-black text-2xl absolute right-0 -top-5 z-20"
+            onClick={expandNote}
+          />
+        </div>
+      )}
       {!isExpanded && hover && (
         <div className="relative flex justify-center items-center z-20">
           <Trash
             onClick={(e) => {
-              e.stopPropagation(); //Prevent click event to transfer to parent divs onClick function.
+              e.stopPropagation(); //Prevent click event to transfer to parent divs onClick function (expanding).
               onDelete();
             }}
-            className="text-black text-2xl absolute right-0 top-1  z-20"
+            className="text-black text-2xl absolute right-0 -top-5 z-20"
           />
         </div>
       )}
 
-      {note.text}
+      <input value={note.text}></input>
     </div>
   );
 }
