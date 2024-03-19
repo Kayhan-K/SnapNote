@@ -2,7 +2,13 @@ import { useState } from "react";
 import { Trash } from "react-bootstrap-icons";
 import { X } from "react-bootstrap-icons";
 
-export default function Note({ note, onDelete, isExpanded, expandNote }) {
+export default function Note({
+  noteItem,
+  onDelete,
+  isExpanded,
+  expandNote,
+  setNote,
+}) {
   const [hover, setHover] = useState(false);
 
   function calculateCenter() {
@@ -29,7 +35,7 @@ export default function Note({ note, onDelete, isExpanded, expandNote }) {
       className={`bg-white rounded-2xl px-6 py-7 hover:shadow-inner shadow-xl cursor-pointer mx-6 transition-all relative text-clip text-justify z-10  ${expandedStyles.width} ${expandedStyles.height} ${expandedStyles.transition} ${expandedStyles.position} ${expandedStyles.overflow}`}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      onClick={() => !isExpanded && expandNote()} //only expand note if not expanded
+      onClick={() => !isExpanded && expandNote()} // only expand note if not expanded
       style={{
         position: isExpanded ? "fixed" : "",
         top: `${expandedStyles.top}`,
@@ -49,7 +55,7 @@ export default function Note({ note, onDelete, isExpanded, expandNote }) {
         <div className="relative flex justify-center items-center z-20">
           <Trash
             onClick={(e) => {
-              e.stopPropagation(); //Prevent click event to transfer to parent divs onClick function (expanding).
+              e.stopPropagation(); // Prevent click event from transferring to parent divs onClick function (expanding).
               onDelete();
             }}
             className="text-black text-2xl absolute right-0 -top-5 z-20"
@@ -57,7 +63,31 @@ export default function Note({ note, onDelete, isExpanded, expandNote }) {
         </div>
       )}
 
-      <input value={note.text}></input>
+      {isExpanded ? (
+        <textarea
+          value={noteItem.text}
+          onChange={(e) => {
+            const newNoteText = e.target.value;
+            setNote(
+              (prevNote) =>
+                prevNote.map((item) =>
+                  item.id === noteItem.id
+                    ? { ...item, text: newNoteText }
+                    : item
+                )
+              /*
+              
+              Changing the value of note text, we are updating the state to the parent.
+
+              Mapping all previous notes and updating the matching one.
+
+              */
+            );
+          }}
+        />
+      ) : (
+        noteItem.text
+      )}
     </div>
   );
 }

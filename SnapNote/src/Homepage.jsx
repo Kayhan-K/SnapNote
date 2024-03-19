@@ -98,7 +98,8 @@ export default function Homepage() {
           {note.map((noteItem, index) => (
             <Note
               key={index}
-              note={noteItem}
+              noteItem={noteItem}
+              setNote={setNote}
               onDelete={() => deleteNote(noteItem.id)}
               expandNote={() => onClickExpandNote(index)}
               isExpanded={index === expandedNote}
