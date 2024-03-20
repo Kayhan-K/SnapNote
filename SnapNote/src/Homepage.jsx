@@ -40,15 +40,17 @@ export default function Homepage() {
   return (
     <div
       id="container"
-      className="flex flex-col justify-center w-full h-screen bg-gray-200 m-0 "
+      className="flex flex-col justify-center w-full h-screen bg-gray-200 "
     >
       <div
         id="input-section"
-        className="flex justify-center items-center w-screen mt-10 "
+        className="flex justify-between items-center w-screen mt-10 max-custom_sm:justify-between max-custom_xsm:flex-col p-5"
       >
-        <img className="absolute left-10 -top-10 h-55" src="/SnapNote.png" />
+        <div className="relative h-20 w-40">
+          <img className="absolute left-0 -top-10 h-43 " src="/SnapNote.png" />
+        </div>
 
-        <div className="relative lg:w-2/6 md:w-2/6">
+        <div className="relative lg:w-2/6 md:w-2/6 max-custom_sm:mr-10 max-custom_xsm:mr-0">
           <input
             onChange={(event) => {
               setNoteInput(event.target.value);

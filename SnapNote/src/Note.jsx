@@ -22,11 +22,11 @@ export default function Note({
 
   console.log(centerLocation.x, centerLocation.y);
   const expandedStyles = {
-    width: isExpanded ? "w-96" : "w-60",
-    height: isExpanded ? "h-80" : "h-56",
-    transition: isExpanded ? "transition duration-700 z-20 " : "",
+    width: isExpanded ? "w-96 max-custom_xsm:w-60" : "w-60",
+    height: isExpanded ? "h-80 max-custom_xsm:h-56" : "h-56",
+    transition: isExpanded ? "transition duration-700 z-20 mx-0" : "",
     top: isExpanded ? `${centerLocation.y}px` : "",
-    left: isExpanded ? `${centerLocation.x}px` : "",
+    left: isExpanded ? `${centerLocation.x}px ` : "",
     // overflow: isExpanded ? "overflow-auto" : "overflow-hidden",
   };
 
