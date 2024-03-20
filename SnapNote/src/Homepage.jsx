@@ -44,8 +44,10 @@ export default function Homepage() {
     >
       <div
         id="input-section"
-        className="flex flex-col justify-center items-center w-screen mt-10 "
+        className="flex justify-center items-center w-screen mt-10 "
       >
+        <img className="absolute left-10 -top-10 h-55" src="/SnapNote.png" />
+
         <div className="relative lg:w-2/6 md:w-2/6">
           <input
             onChange={(event) => {
