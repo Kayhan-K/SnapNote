@@ -32,7 +32,7 @@ export default function Note({
 
   return (
     <div
-      className={`bg-white rounded-2xl px-6 py-7 hover:shadow-inner shadow-xl cursor-pointer mx-6 transition-all relative text-clip text-justify z-10 overflow-hidden  ${expandedStyles.width} ${expandedStyles.height} ${expandedStyles.transition} ${expandedStyles.position} ${expandedStyles.overflow}`}
+      className={`bg-white rounded-2xl px-6 py-7 hover:shadow-inner shadow-xl cursor-pointer transition-all relative text-clip text-justify z-10 overflow-hidden  ${expandedStyles.width} ${expandedStyles.height} ${expandedStyles.transition} ${expandedStyles.position} ${expandedStyles.overflow}`}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onClick={() => !isExpanded && expandNote()} // only expand note if not expanded
@@ -58,7 +58,7 @@ export default function Note({
               e.stopPropagation(); // Prevent click event from transferring to parent divs onClick function (expanding).
               onDelete();
             }}
-            className="text-black text-2xl absolute right-0 -top-5 z-20"
+            className="text-black text-2xl absolute right-0 -top-5 z-20 select-none"
           />
         </div>
       )}
